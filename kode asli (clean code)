@@ -1,40 +1,26 @@
-#include <iostream>
-#include <iomanip>
+# Gunakan konstanta agar mudah diubah di satu tempat
+TAX_RATE = 0.1
 
-using namespace std;
+def calculate_tax(amount):
+    """Menghitung nilai pajak berdasarkan nominal."""
+    return amount * TAX_RATE
 
-// Menggunakan konstanta untuk menghindari Magic Number
-const double TAX_RATE = 0.1;
+def calculate_total_price(price, quantity):
+    """Logika hanya untuk menghitung total harga (SRP)."""
+    subtotal = price * quantity
+    return subtotal + calculate_tax(subtotal)
 
-// Fungsi khusus logika perhitungan pajak (DRY)
-double calculateTax(double amount) {
-    return amount * TAX_RATE;
-}
+def display_invoice(price, quantity, total):
+    """Fungsi khusus untuk menampilkan output ke layar (SRP)."""
+    print("=== STRUK PEMBAYARAN ===")
+    print(f"Harga Satuan : Rp{price}")
+    print(f"Jumlah Barang: {quantity}")
+    print(f"Total Akhir  : Rp{total}")
+    print("========================")
 
-// Fungsi khusus logika total harga (SRP: Hanya menghitung)
-double calculateTotalPrice(double price, int quantity) {
-    double subtotal = price * quantity;
-    return subtotal + calculateTax(subtotal);
-}
+# --- Eksekusi Program ---
+item_price = 20000
+item_quantity = 2
 
-// Fungsi khusus menampilkan hasil (SRP: Hanya urusan tampilan)
-void displayReceipt(double price, int quantity, double total) {
-    cout << "============================" << endl;
-    cout << "       STRUK BELANJA        " << endl;
-    cout << "============================" << endl;
-    cout << "Harga per Item : Rp " << price << endl;
-    cout << "Jumlah Item    : " << quantity << endl;
-    cout << "Total (Pajak)  : Rp " << total << endl;
-    cout << "============================" << endl;
-}
-
-int main() {
-    double itemPrice = 15000.0;
-    int itemQuantity = 3;
-
-    double finalTotal = calculateTotalPrice(itemPrice, itemQuantity);
-    
-    displayReceipt(itemPrice, itemQuantity, finalTotal);
-
-    return 0;
-}
+final_result = calculate_total_price(item_price, item_quantity)
+display_invoice(item_price, item_quantity, final_result)
