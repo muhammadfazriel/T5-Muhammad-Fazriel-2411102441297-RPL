@@ -1,23 +1,17 @@
-#include <iostream>
-using namespace std;
+# Fungsi hitung
+def h(a, b):
+    # pajak 10%
+    x = a * b
+    p = x * 0.1
+    res = x + p
+    
+    print("Memproses...")
+    print("Harga:", a)
+    print("Jumlah:", b)
+    print("Total:", res)
+    return res
 
-// Fungsi hitung
-void htg(double a, int b) {
-    double t = a * b;
-    double p = t * 0.1; // Pajak 10 persen
-    double total = t + p;
+def cek_pajak(n):
+    return n * 0.1
 
-    cout << "Item dihitung..." << endl;
-    cout << "Harga: " << a << endl;
-    cout << "Qty: " << b << endl;
-    cout << "Total: " << total << endl;
-}
-
-double itngPajak(double n) {
-    return n * 0.1;
-}
-
-int main() {
-    htg(15000, 3);
-    return 0;
-}
+h(20000, 2)
