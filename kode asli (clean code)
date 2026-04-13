@@ -1,0 +1,40 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+// Menggunakan konstanta untuk menghindari Magic Number
+const double TAX_RATE = 0.1;
+
+// Fungsi khusus logika perhitungan pajak (DRY)
+double calculateTax(double amount) {
+    return amount * TAX_RATE;
+}
+
+// Fungsi khusus logika total harga (SRP: Hanya menghitung)
+double calculateTotalPrice(double price, int quantity) {
+    double subtotal = price * quantity;
+    return subtotal + calculateTax(subtotal);
+}
+
+// Fungsi khusus menampilkan hasil (SRP: Hanya urusan tampilan)
+void displayReceipt(double price, int quantity, double total) {
+    cout << "============================" << endl;
+    cout << "       STRUK BELANJA        " << endl;
+    cout << "============================" << endl;
+    cout << "Harga per Item : Rp " << price << endl;
+    cout << "Jumlah Item    : " << quantity << endl;
+    cout << "Total (Pajak)  : Rp " << total << endl;
+    cout << "============================" << endl;
+}
+
+int main() {
+    double itemPrice = 15000.0;
+    int itemQuantity = 3;
+
+    double finalTotal = calculateTotalPrice(itemPrice, itemQuantity);
+    
+    displayReceipt(itemPrice, itemQuantity, finalTotal);
+
+    return 0;
+}
